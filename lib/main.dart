@@ -73,7 +73,10 @@ class _TodoPageState extends State<TodoPage> {
         centerTitle: true,
         backgroundColor: kPinkLight,
         elevation: 0,
-        title: const Text('TIG333 TODO', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600)),
+        title: const Text(
+          'TIG333 TODO',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -92,16 +95,21 @@ class _TodoPageState extends State<TodoPage> {
                 onSubmitted: (_) => _add(),
               ),
               const SizedBox(height: 10),
-              GestureDetector(onTap: _add, child: const Text('+ ADD', style: TextStyle(color: kPink))),
+              GestureDetector(
+                  onTap: _add,
+                  child: const Text('+ ADD', style: TextStyle(color: kPink))),
             ]),
           )),
           const SizedBox(height: 12),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            FilterTab('All', _filter == TodoFilter.all, onTap: () => setState(() => _filter = TodoFilter.all)),
+            FilterTab('All', _filter == TodoFilter.all,
+                onTap: () => setState(() => _filter = TodoFilter.all)),
             const SizedBox(width: 8),
-            FilterTab('Done', _filter == TodoFilter.done, onTap: () => setState(() => _filter = TodoFilter.done)),
+            FilterTab('Done', _filter == TodoFilter.done,
+                onTap: () => setState(() => _filter = TodoFilter.done)),
             const SizedBox(width: 8),
-            FilterTab('Undone', _filter == TodoFilter.undone, onTap: () => setState(() => _filter = TodoFilter.undone)),
+            FilterTab('Undone', _filter == TodoFilter.undone,
+                onTap: () => setState(() => _filter = TodoFilter.undone)),
           ]),
           const SizedBox(height: 12),
           Expanded(
@@ -109,7 +117,8 @@ class _TodoPageState extends State<TodoPage> {
               ListView.separated(
                 padding: const EdgeInsets.only(bottom: 64),
                 itemCount: _visible.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 1, child: ColoredBox(color: kPinkLight)),
+                separatorBuilder: (_, __) =>
+                    const SizedBox(height: 1, child: ColoredBox(color: kPinkLight)),
                 itemBuilder: (_, i) {
                   final t = _visible[i];
                   return GestureDetector(
@@ -123,7 +132,10 @@ class _TodoPageState extends State<TodoPage> {
                   );
                 },
               ),
-              Positioned(right: 12, bottom: 12, child: SmallPlusButton(onPressed: _add)),
+              Positioned(
+                  right: 12,
+                  bottom: 12,
+                  child: SmallPlusButton(onPressed: _add)),
             ])),
           ),
         ]),
@@ -134,21 +146,25 @@ class _TodoPageState extends State<TodoPage> {
 
 Widget card(Widget child) => Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: kBorder)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: kBorder)),
       child: child,
     );
 
-Widget todoRow(String title, bool done, {VoidCallback? onToggle, VoidCallback? onDelete}) => SizedBox(
+Widget todoRow(String title, bool done,
+        {VoidCallback? onToggle, VoidCallback? onDelete}) =>
+    SizedBox(
       height: 46,
       child: Row(children: [
         const SizedBox(width: 8),
         GestureDetector(onTap: onToggle, child: checkBox(done)),
         const SizedBox(width: 12),
-        Expanded(child: Text(title, style: TextStyle(
-          decoration: done ? TextDecoration.lineThrough : null,
-          color: done ? Colors.pink.shade200 : Colors.black87))),
+        Expanded(
+            child: Text(title,
+                style: TextStyle(
+                    decoration: done ? TextDecoration.lineThrough : null,
+                    color: done ? Colors.pink.shade200 : Colors.black87))),
         InkWell(
           onTap: onDelete,
           child: const Padding(
@@ -160,13 +176,16 @@ Widget todoRow(String title, bool done, {VoidCallback? onToggle, VoidCallback? o
     );
 
 Widget checkBox(bool checked) => Container(
-      width: 18, height: 18,
+      width: 18,
+      height: 18,
       decoration: BoxDecoration(
-        border: Border.all(color: kPink, width: 1.4),
-        borderRadius: BorderRadius.circular(2),
-        color: checked ? kPinkLight : Colors.white),
+          border: Border.all(color: kPink, width: 1.4),
+          borderRadius: BorderRadius.circular(2),
+          color: checked ? kPinkLight : Colors.white),
       alignment: Alignment.center,
-      child: checked ? const Icon(Icons.check, size: 14, color: kPink) : null,
+      child: checked
+          ? const Icon(Icons.check, size: 14, color: kPink)
+          : null,
     );
 
 class FilterTab extends StatelessWidget {
@@ -180,12 +199,13 @@ class FilterTab extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: kPink, width: selected ? 2 : 1)),
-          child: Text(label, style: TextStyle(
-            fontWeight: selected ? FontWeight.bold : FontWeight.w500,
-            color: selected ? kPink : Colors.black87)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: kPink, width: selected ? 2 : 1)),
+          child: Text(label,
+              style: TextStyle(
+                  fontWeight: selected ? FontWeight.bold : FontWeight.w500,
+                  color: selected ? kPink : Colors.black87)),
         ),
       );
 }
@@ -198,11 +218,17 @@ class SmallPlusButton extends StatelessWidget {
         onTap: onPressed,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.white,
-            border: Border.all(color: kPink),
-            boxShadow: const [BoxShadow(blurRadius: 6, offset: Offset(0, 2), color: Color(0x22000000))]),
-          child: const SizedBox(width: 36, height: 36, child: Icon(Icons.add, size: 22, color: kPink)),
+              shape: BoxShape.circle,
+              color: Colors.white,
+              border: Border.all(color: kPink),
+              boxShadow: const [
+                BoxShadow(
+                    blurRadius: 6,
+                    offset: Offset(0, 2),
+                    color: Color(0x22000000))
+              ]),
+          child: const SizedBox(
+              width: 36, height: 36, child: Icon(Icons.add, size: 22, color: kPink)),
         ),
       );
 }
@@ -213,11 +239,15 @@ class DisabledTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) => IgnorePointer(
         child: TextField(
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             isDense: true,
-            hintText: 'What are you going to do?',
-            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            border: OutlineInputBorder(borderSide: BorderSide(color: kPink)),
+            hintText: hint,
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(color: kPink),
+            ),
           ),
         ),
       );
+}
